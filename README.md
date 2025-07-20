@@ -93,7 +93,7 @@ alias ll='ls -alF'
 #### 1. リポジトリをクローン
 
 ```zsh
-git clone vgit@github.com:MatsumotoTakuya-1/configFile.git
+git clone git@github.com:MatsumotoTakuya-1/configFile.git ~/dotfiles
 cd ~/dotfiles
 ```
 
@@ -133,4 +133,4 @@ mv ~/.gitconfig ~/.gitconfig.backup
 ```
 
 install.sh がクローンしたディレクトリの中にある dotfiles/.zshrc を絶対パスで参照する構成になっているため、dotfiles の場所を動かすとリンクが切れて参照できなくなります。
-移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
+設定通りにすれば~/dotfiles にクローンされます。移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
