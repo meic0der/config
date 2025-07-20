@@ -133,4 +133,4 @@ mv ~/.gitconfig ~/.gitconfig.backup
 ```
 
 install.sh がクローンしたディレクトリの中にある dotfiles/.zshrc を絶対パスで参照する構成になっているため、dotfiles の場所を動かすとリンクが切れて参照できなくなります。
-設定通りにすれば~/dotfiles にクローンされます。移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
+設定通りにすれば~/config/dotfiles にクローンされます。移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
