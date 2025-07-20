@@ -112,9 +112,9 @@ source $ZSH/oh-my-zsh.sh
 PATH=~/.console-ninja/.bin:$PATH
 alias work='cd /Users/user/Desktop/work'
 alias btc8='cd /Users/user/Desktop/work/BTC8'
+alias config='cd /Users/user/Desktop/work/config/dotfiles'
 [[ -s "$(brew --prefix)/etc/profile.d/autojump.sh" ]] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
 alias gs='git status'
 alias gc='git commit -m'
 alias gco='git checkout'
 alias ll='ls -alF'
-
