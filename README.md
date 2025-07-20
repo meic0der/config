@@ -37,6 +37,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 初回実行時、~/.zshrc が自動生成・書き換えされます。必要ならバックアップを取っておきましょう。
 
+※この後、dotfile で設定する場合は、.zshrc は設定ずみ使うので下記設定不要。
+dotfiles セットアップ手順を実施する。
+
 ### テーマを変更（おすすめ：agnoster や robbyrussell）
 
 ~/.zshrc を開いて、以下の行を編集：
