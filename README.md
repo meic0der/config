@@ -77,3 +77,57 @@ alias gc='git commit -m'
 alias gco='git checkout'
 alias ll='ls -alF'
 ```
+
+## 🚀 dotfiles セットアップ手順
+
+このリポジトリには `.zshrc` や `.gitconfig` などの設定ファイルが含まれており、  
+付属の `install.sh` を実行することで、**シンボリックリンクを自動で作成**して、 現在の PC に設定を反映することができます。
+
+---
+
+### ✅ セットアップ手順
+
+#### 1. リポジトリをクローン
+
+```zsh
+git clone vgit@github.com:MatsumotoTakuya-1/configFile.git
+cd ~/dotfiles
+```
+
+#### 2. install.sh を実行して設定を反映
+
+```zsh
+chmod +x install.sh
+./install.sh
+```
+
+#### 3. 反映のために再読み込み
+
+```zsh
+source ~/.zshrc
+```
+
+状態確認コマンド
+
+```zsh
+ls -l ~/.zshrc
+```
+
+実行結果が下記になってれば OK
+
+```zsh
+~/.zshrc -> /Users/you/dotfiles/.zshrc
+```
+
+#### 📝 注意事項
+
+すでに ~/.zshrc などのファイルがある場合は 上書きされます。
+心配な場合は事前にバックアップしておくことをおすすめします：
+
+```zsh
+mv ~/.zshrc ~/.zshrc.backup
+mv ~/.gitconfig ~/.gitconfig.backup
+```
+
+install.sh がクローンしたディレクトリの中にある dotfiles/.zshrc を絶対パスで参照する構成になっているため、dotfiles の場所を動かすとリンクが切れて参照できなくなります。
+移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
