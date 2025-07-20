@@ -93,8 +93,8 @@ alias ll='ls -alF'
 #### 1. リポジトリをクローン
 
 ```zsh
-git clone git@github.com:MatsumotoTakuya-1/configFile.git ~/dotfiles
-cd ~/dotfiles
+git clone git@github.com:MatsumotoTakuya-1/configFile.git ~/config
+cd ~/config/dotfiles
 ```
 
 #### 2. install.sh を実行して設定を反映
