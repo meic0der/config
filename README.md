@@ -25,66 +25,66 @@ brew install --cask iterm2
 | フルスクリーン表示           | `⌘ + Enter`             | フルスクリーンモードに切り替え             |
 | 設定画面を開く               | `⌘ + ,`                 | Preferences からプロファイルなどを設定可能 |
 
-## 🌀 Oh My Zsh セットアップガイド
+## 🐚 Zsh 構成について（本リポジトリの方針）
 
-### Oh My Zsh をインストール
+本設定では oh-my-zsh は使用しません。
+理由：
+- 起動が軽い
+- 設定の見通しが良い
+- brew / dotfiles 管理と相性が良い
 
-以下のコマンドを実行：
+### 📚 oh-my-zsh について（参考）
+現在使ってないが以前は使っていた。
+docs/oh-my-zsh.md 参照
 
+## 🚀 Starship（プロンプト）
+### 概要
+本設定では Starship を使ってプロンプトを管理します。
+- Git ブランチ / 状態の自動表示
+- 高速（Rust 製）
+- .zshrc を汚さない
+- 設定は starship.toml 1 ファイル
+
+### インストール（Homebrew）
 ```zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+brew install starship
+```
+### Starship 設定ファイルについて
+Starship は以下のファイルを参照します：
+```
+~/.config/starship.toml
+```
+本リポジトリでは、install.sh により dotfiles 側の設定ファイルをシンボリックリンクします。
+```
+config/dotfiles/starship/starship.toml
+  ↓
+~/.config/starship.toml
+```
+## 🎨 Nerd Font（Starship 用フォント）
+starship.tomlで設定しているStarship のアイコンや Powerline 記号を正しく表示するため、Nerd Font の利用を推奨します。
+
+### インストール（例：JetBrains Mono）
+```zsh
+brew install --cask font-jetbrains-mono-nerd-font
 ```
 
-初回実行時、~/.zshrc が自動生成・書き換えされます。必要ならバックアップを取っておきましょう。
+### iTerm2 側の設定
+- Preferences → Profiles → Text
+- Font を JetBrainsMono Nerd Font に変更
 
-※この後、dotfile で設定する場合は、.zshrc は設定ずみ使うので下記設定不要。
-dotfiles セットアップ手順を実施する。
-
-### テーマを変更（おすすめ：agnoster や robbyrussell）
-
-~/.zshrc を開いて、以下の行を編集：
-
+## 📦 brew でインストールするツール一覧
+本構成で使用しているツール：
 ```zsh
-ZSH_THEME="robbyrussell"
-```
-
-変更後は以下を反映
-
-```zsh
-source ~/.zshrc
-```
-
-### よく使うプラグインを有効化
-
-.zshrc の plugins=() の中にプラグイン名を追加：
-
-```zsh
-plugins=(git z extract colored-man-pages zsh-autosuggestions)
-```
-
-### 🔌 Oh My Zsh プラグイン一覧と使い方
-
-| プラグイン名          | 説明                                                     | 使い方例                                              |
-| --------------------- | -------------------------------------------------------- | ----------------------------------------------------- |
-| `git`                 | Git 用のエイリアスを多数追加                             | `gst` → `git status`, `gco` → `git checkout`          |
-| `z`                   | ディレクトリ移動を学習し、名前の一部で高速ジャンプ可能   | `z myproject` で過去に移動した `myproject` にジャンプ |
-| `colored-man-pages`   | `man` コマンドを色付きで表示し、読みやすくする           | `man ls` など、通常通りに使用                         |
-| `extract`             | 拡張子から解凍方法を自動判断して 1 コマンドで解凍可能    | `x file.zip`, `x archive.tar.gz`, `x something.7z`    |
-| `zsh-autosuggestions` | 入力中に過去のコマンド候補をグレーでサジェストしてくれる | `git c` と打つ → `→`キーで `git commit ...` を補完    |
-
-### カスタムエイリアス例（.zshrc に追加）
-
-```zsh
-alias gs='git status'
-alias gc='git commit -m'
-alias gco='git checkout'
-alias ll='ls -alF'
+brew install \
+  z \
+  starship \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting
 ```
 
 ## 🚀 dotfiles セットアップ手順
-
-このリポジトリには `.zshrc` や `.gitconfig` などの設定ファイルが含まれており、  
-付属の `install.sh` を実行することで、**シンボリックリンクを自動で作成**して、 現在の PC に設定を反映することができます。
+このリポジトリには `.zshrc` / `starship.toml` などの設定が含まれています。
+付属の `install.sh` を実行すると シンボリックリンクを自動作成し、現在の PC に設定を反映することができます。
 
 ---
 
@@ -114,12 +114,14 @@ source ~/.zshrc
 
 ```zsh
 ls -l ~/.zshrc
+ls -l ~/.config/starship.toml
 ```
 
 実行結果が下記になってれば OK
 
 ```zsh
-~/.zshrc -> /Users/you/dotfiles/.zshrc
+~/.zshrc -> /Users/you/config/dotfiles/.zshrc
+~/.config/starship.toml -> /Users/you/config/dotfiles/starship/starship.toml
 ```
 
 #### 📝 注意事項
@@ -129,8 +131,8 @@ ls -l ~/.zshrc
 
 ```zsh
 mv ~/.zshrc ~/.zshrc.backup
-mv ~/.gitconfig ~/.gitconfig.backup
+mv ~/.config/starship.toml ~/.config/starship.toml.backup
 ```
-
-install.sh がクローンしたディレクトリの中にある dotfiles/.zshrc を絶対パスで参照する構成になっているため、dotfiles の場所を動かすとリンクが切れて参照できなくなります。
-設定通りにすれば~/config/dotfiles にクローンされます。移動させない位置にクローンするか、移動させたら再度、install.sh を実行してください。
+※ `install.sh` は実行時に自身の配置ディレクトリを基準に
+シンボリックリンクを作成します。
+dotfiles を移動した場合は、再度 `install.sh` を実行してください。

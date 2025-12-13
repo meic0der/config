@@ -1,11 +1,31 @@
 #!/bin/bash
+set -e
 
-# シンボリックリンクを作成（元が存在する場合は上書き）
-ln -sf $(pwd)/.zshrc ~/.zshrc
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# 他に必要があれば追加
-# ln -sf $(pwd)/dotfiles/.gitconfig ~/.gitconfig
-# ln -sf $(pwd)/dotfiles/.vimrc ~/.vimrc
-# ln -sf $(pwd)/dotfiles/.config/nvim ~/.config/nvim
+echo "🔗 Setting up dotfiles from: $DOTFILES_DIR"
 
-echo "✅ dotfiles linked!"
+# ================================
+# .zshrc
+# ================================
+ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+echo "✔ linked ~/.zshrc"
+
+# ================================
+# Starship config
+# ================================
+# ~/.config が無い環境向け
+mkdir -p "$HOME/.config"
+
+ln -sf "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
+echo "✔ linked ~/.config/starship.toml"
+
+# ================================
+# （将来用）他の設定
+# ================================
+# ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
+# ln -sf "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
+# ln -sf "$DOTFILES_DIR/.config/nvim" "$HOME/.config/nvim"
+
+echo "🎉 Dotfiles setup completed"
+
