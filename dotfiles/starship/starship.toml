@@ -6,10 +6,15 @@ add_newline = false
 
 format = """
 [ ](fg:#7aa2f7 bg:#1a1b26)\
+$sudo\
+$time\
 $directory\
 $git_branch\
 $git_status\
-$git_metrics\
+$direnv\
+$nodejs\
+$java\
+$docker_context\
 [](fg:#1a1b26)\
 $fill\
 [](fg:#9ece6a)\
@@ -19,6 +24,12 @@ $fill\
 right_format = """
 $cmd_duration
 """
+
+[time]
+disabled = false
+time_format = "%T"
+style = "lavender"
+format = '[ $time | ]($style)'
 
 [directory]
 truncation_length = 6
@@ -35,27 +46,20 @@ symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
 truncation_length = 4
 truncation_symbol = ''
 style = 'fg:#7aa2f7 bg:#1a1b26'
-format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+format = '[  $symbol$branch(:$remote_branch)]($style) ' # nf-pl-left_soft_divider
 
 [git_status]
-style = 'fg:#e0af68 bg:#1a1b26'
-conflicted = '='
-ahead = '⇡${count}'
-behind = '⇣${count}'
-diverged = '⇕'
-up_to_date = '✓'
-untracked = '?'
-stashed = '$'
-modified = '!${count}'
-renamed = '»'
-deleted = '✘'
-format = '([\[$all_status$ahead_behind\]]($style))'
-
-[git_metrics]
-added_style = 'fg:#9ece6a bg:#1a1b26'
-deleted_style = 'fg:#9ece6a bg:#1a1b26'
-format = '[+$added/-$deleted]($deleted_style)'
-disabled = false
+style = "bold red"
+ahead = "↑${count}"
+diverged = "↕↑${ahead_count}↓${behind_count}"
+behind = "↓${count}"
+conflicted = "CONFLICT"
+untracked = "UNTRACKED"
+stashed = "STASHED"
+modified = "MODIFIED"
+staged = "STAGED(${count})"
+renamed = "RENAMED"
+deleted = "DELETED"
 
 [fill]
 symbol = '─'
@@ -74,4 +78,18 @@ disabled = false
 min_time = 1
 style = 'fg:#e0af68'
 format = "[   $duration]($style)" # nf-pl-right_soft_divider, nf-mdi-clock
+
+# プログラミング言語固有設定
+[nodejs]
+symbol = "⬢ "
+style = "bold green"
+
+[java]
+symbol = "☕ "
+style = "bold red"
+
+# Docker
+[docker_context]
+symbol = "🐳 "
+style = "bold blue"
 
