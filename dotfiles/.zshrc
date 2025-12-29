@@ -69,19 +69,25 @@ fi
 # ================================
 # Aliases（よく使うやつ）
 # ================================
+# zsh-abbr
+source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
 
 # cdショートカット
-alias app='cd /Users/matsumototakuya/Desktop/06.プログラミング/アプリ'
-alias prog='cd /Users/matsumototakuya/Desktop/06.プログラミング'
-alias config='cd ~/config/dotfiles'
+abbr -S app='cd /Users/matsumototakuya/Desktop/06_programming/app'
+abbr -S prog='cd /Users/matsumototakuya/Desktop/06_programming'
+abbr -S config='cd ~/config/dotfiles'
 
-# Git系（必要なら増やしてOK）
-alias gs='git status'
-alias gc='git commit -m'
-alias gco='git checkout'
+# git
+abbr -S ga='git add'
+abbr -S gs='git status'
+abbr -S gb='git branch'
+abbr -S gcm='git commit -m'
+abbr -S gco='git checkout'
+abbr -S gd='git diff'
+abbr -S gl='git log'
 
 # ls系
-alias ll='ls -alF'
+abbr -S ll='ls -alF'
 
 # ================================
 # Prompt（見た目）: Starship
