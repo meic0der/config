@@ -76,6 +76,9 @@ source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
 abbr -S app='cd /Users/matsumototakuya/Desktop/06_programming/app'
 abbr -S prog='cd /Users/matsumototakuya/Desktop/06_programming'
 abbr -S config='cd ~/config/dotfiles'
+abbr -S ~='cd ~'
+abbr -S cloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+abbr -S obs='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/MyObsidian'
 
 # git
 abbr -S ga='git add'
