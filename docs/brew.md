@@ -72,8 +72,14 @@ Docker 実行環境。LocalStack や E2E テスト（Playwright）で使用。
 高機能ターミナルエミュレータ。
 - chatgpt <br>
 ChatGPT デスクトップアプリ。
+- clipy <br>
+クリップボード履歴管理アプリ。
 - font-jetbrains-mono-nerd-font <br>
 Nerd Font 対応の等幅フォント（アイコン表示対応）。
+- rectangle <br>
+ウィンドウ分割・スナップ用のアプリ。
+- scroll-reverser <br>
+トラックパッドとマウスのスクロール方向を個別に設定。
 
 ## Homebrew セットアップ
 依存関係は Homebrew が自動解決するため、明示的に必要なツールのみを管理しています。
