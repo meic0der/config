@@ -58,6 +58,7 @@ config/dotfiles/starship/starship.toml
 
 ## Nerd Font（Starship 用フォント）
 starship.toml で設定している Starship のアイコンや Powerline 記号を正しく表示するため、Nerd Font の利用を推奨します。
+Terminal や IntelliJ、VSCode 側でもフォント設定を Nerd Font にする必要があります。
 
 ### インストール（例：JetBrains Mono）
 ```zsh
