@@ -71,12 +71,14 @@ brew install --cask font-jetbrains-mono-nerd-font
 
 ## brew でインストールするツール
 本構成で使用しているツール：
+※本構成では zsh-abbr を用いてコマンドの省略入力を行います。
 ```zsh
 brew install \
   z \
   starship \
   zsh-autosuggestions \
-  zsh-syntax-highlighting
+  zsh-syntax-highlighting \
+  olets/tap/zsh-abbr
 ```
 
 ## dotfiles セットアップ手順
